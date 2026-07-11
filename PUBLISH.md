@@ -23,7 +23,7 @@ git push -u origin main
 
 CI (`.github/workflows/ci.yml`) прогонит синтакс-чек CLI и валидацию манифестов.
 
-## 2. npm
+## 2. npm (ОСТАЛОСЬ — нужен ваш токен)
 
 Аккаунт с 2FA → обычный `npm publish` и granular-токен дают 403 «2FA bypass required».
 Рабочие пути (любой на выбор):
@@ -38,18 +38,26 @@ CI (`.github/workflows/ci.yml`) прогонит синтакс-чек CLI и в
 - **или** обычный вход + одноразовый код: `npm publish --access public --otp=КОД`.
 
 Проверка после публикации: `npx -y marketscore-wordstat-mcp --version` → `1.0.0`.
+В `package.json` уже проставлен `mcpName` — реестр примет npm-транспорт при бампе (шаг 3.1).
 
 ## 3. Официальный MCP Registry
 
+**Remote-only запись УЖЕ опубликована** (v1.0.0, `server.remote.json` — только OAuth-URL
+`https://app.marketscore.ru/api/mcp`, основной путь установки для Claude/ChatGPT). npm-пакета
+в записи пока нет, т.к. на момент публикации npm ещё не был выложен (записи реестра неизменяемы).
+
+### 3.1. Добавить npm-транспорт в реестр — ПОСЛЕ шага 2
+
+После `npm publish` бампнуть версию и переопубликовать полный `server.json` (с npm+remote):
+
 ```bash
 cd ~/Desktop/marketscore-wordstat-mcp
+# поднять version в package.json И server.json до 1.0.1 (держать синхронно)
 mcp-publisher login github        # токен истекает быстро — логиниться прямо перед publish
-mcp-publisher publish             # прочитает server.json (io.github.marketscore/marketscore-wordstat-mcp)
+mcp-publisher publish             # прочитает server.json (npm + remote)
 ```
 
-`server.json` уже содержит и npm-пакет, и remote-URL — запись выйдет сразу с обоими
-транспортами (в отличие от direct, где npm добавили позже). Downstream-каталоги
-(mcp.so / PulseMCP / Glama) синхронизируются из реестра сами.
+Downstream-каталоги (mcp.so / PulseMCP / Glama) синхронизируются из реестра сами.
 
 ## 4. Каталоги
 
