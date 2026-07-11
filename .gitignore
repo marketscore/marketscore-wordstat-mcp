@@ -3,3 +3,6 @@ node_modules/
 .DS_Store
 .env
 .env.*
+
+# внутренний чек-лист владельца — не публиковать
+PUBLISH.md
