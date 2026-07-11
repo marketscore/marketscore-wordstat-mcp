@@ -40,21 +40,20 @@ CI (`.github/workflows/ci.yml`) прогонит синтакс-чек CLI и в
 Проверка после публикации: `npx -y marketscore-wordstat-mcp --version` → `1.0.0`.
 В `package.json` уже проставлен `mcpName` — реестр примет npm-транспорт при бампе (шаг 3.1).
 
-## 3. Официальный MCP Registry
+## 3. Официальный MCP Registry — npm-only, ПОСЛЕ шага 2
 
-**Remote-only запись УЖЕ опубликована** (v1.0.0, `server.remote.json` — только OAuth-URL
-`https://app.marketscore.ru/api/mcp`, основной путь установки для Claude/ChatGPT). npm-пакета
-в записи пока нет, т.к. на момент публикации npm ещё не был выложен (записи реестра неизменяемы).
+⚠️ Запись Wordstat в реестре — **только npm-пакет**, БЕЗ remote-URL: `https://app.marketscore.ru/api/mcp`
+уже занят записью `io.github.marketscore/marketscore-direct-mcp` (один URL нельзя
+зарегистрировать дважды). Функционально это ок — хостовый сервер один, а набор инструментов
+он отдаёт по балансу/тарифу. `server.json` уже npm-only.
 
-### 3.1. Добавить npm-транспорт в реестр — ПОСЛЕ шага 2
-
-После `npm publish` бампнуть версию и переопубликовать полный `server.json` (с npm+remote):
+Реестр верифицирует владение npm-пакетом по полю `mcpName` в его `package.json` (уже проставлено),
+поэтому публиковать в реестр можно только ПОСЛЕ `npm publish`:
 
 ```bash
 cd ~/Desktop/marketscore-wordstat-mcp
-# поднять version в package.json И server.json до 1.0.1 (держать синхронно)
 mcp-publisher login github        # токен истекает быстро — логиниться прямо перед publish
-mcp-publisher publish             # прочитает server.json (npm + remote)
+mcp-publisher publish             # прочитает server.json (npm-only)
 ```
 
 Downstream-каталоги (mcp.so / PulseMCP / Glama) синхронизируются из реестра сами.

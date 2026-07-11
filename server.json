@@ -15,11 +15,5 @@
       "version": "1.0.0",
       "transport": { "type": "stdio" }
     }
-  ],
-  "remotes": [
-    {
-      "type": "streamable-http",
-      "url": "https://app.marketscore.ru/api/mcp"
-    }
   ]
 }
