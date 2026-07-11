@@ -1,0 +1,52 @@
+{
+  "name": "marketscore-wordstat-mcp",
+  "version": "1.0.0",
+  "description": "MCP connector for Yandex Wordstat (Яндекс Вордстат) — keyword research with frequencies and 24-month seasonality from Claude or ChatGPT. Prepaid, from 20 ₽. Requires a marketscore.ru account.",
+  "type": "module",
+  "bin": {
+    "marketscore-wordstat-mcp": "bin/cli.mjs"
+  },
+  "files": [
+    "bin",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "wordstat",
+    "yandex-wordstat",
+    "yandex wordstat",
+    "яндекс вордстат",
+    "вордстат",
+    "keyword-research",
+    "keywords",
+    "подбор слов",
+    "семантика",
+    "частотность",
+    "yandex",
+    "yandex-direct",
+    "seo",
+    "ppc",
+    "claude",
+    "chatgpt",
+    "cursor",
+    "ai",
+    "ai-marketing",
+    "marketing",
+    "direct-manager"
+  ],
+  "license": "MIT",
+  "homepage": "https://app.marketscore.ru/mcp-wordstat",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marketscore/marketscore-wordstat-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marketscore/marketscore-wordstat-mcp/issues"
+  },
+  "author": "Direct Manager (app.marketscore.ru)"
+}

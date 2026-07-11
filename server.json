@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.marketscore/marketscore-wordstat-mcp",
+  "description": "Yandex Wordstat keyword research in Claude or ChatGPT: frequencies & seasonality",
+  "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/marketscore/marketscore-wordstat-mcp",
+    "source": "github"
+  },
+  "websiteUrl": "https://app.marketscore.ru/mcp-wordstat",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "marketscore-wordstat-mcp",
+      "version": "1.0.0",
+      "transport": { "type": "stdio" }
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://app.marketscore.ru/api/mcp"
+    }
+  ]
+}
